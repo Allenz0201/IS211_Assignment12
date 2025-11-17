@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Add Quiz{% endblock %}
+
+{% block content %}
+<h1>Add Quiz</h1>
+
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('add_quiz') }}">
+    <p>
+        <label>Subject:
+            <input type="text" name="subject">
+        </label>
+    </p>
+    <p>
+        <label>Number of questions:
+            <input type="number" name="num_questions" min="1">
+        </label>
+    </p>
+    <p>
+        <label>Quiz date:
+            <input type="date" name="quiz_date">
+        </label>
+    </p>
+    <p>
+        <button type="submit">Add Quiz</button>
+    </p>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Quiz Results{% endblock %}
+
+{% block content %}
+<h1>Quiz {{ quiz.id }} Results</h1>
+<p>Subject: {{ quiz.subject }} | Date: {{ quiz.quiz_date }}</p>
+
+{% if results and results|length > 0 %}
+<table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in results %}
+        <tr>
+            <td>{{ r.student_id }}</td>
+            <td>{{ r.score }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No results yet.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<h2>Students</h2>
+{% if students %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Results</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.first_name }}</td>
+            <td>{{ s.last_name }}</td>
+            <td><a href="{{ url_for('student_results', student_id=s.id) }}">View results</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No students yet.</p>
+{% endif %}
+
+<h2>Quizzes</h2>
+{% if quizzes %}
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th>Number of questions</th>
+            <th>Date</th>
+            <th>Public results</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for q in quizzes %}
+        <tr>
+            <td>{{ q.id }}</td>
+            <td>{{ q.subject }}</td>
+            <td>{{ q.num_questions }}</td>
+            <td>{{ q.quiz_date }}</td>
+            <td><a href="{{ url_for('quiz_results_public', quiz_id=q.id) }}">View anonymous</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No quizzes yet.</p>
+{% endif %}
+{% endblock %}
